@@ -23,7 +23,7 @@ Install the following software on the machine you will perform the deployment fr
 >1. [Windows Store Ubuntu 22.04 LTS](https://apps.microsoft.com/store/detail/ubuntu-22042-lts/9PN20MSR04DW)
 >2. [Docker Desktop](https://www.docker.com/products/docker-desktop)
 >3. [Visual Studio Code](https://visualstudio.microsoft.com/downloads/)
->4. [Remote-Containers VS Code Extension](vscode:extension/ms-vscode-remote.remote-containers)
+>4. [Dev Containers VS Code Extension](vscode:extension/ms-vscode-remote.remote-containers)
 >5. [Git for Windows](https://gitforwindows.org/)
 
 ---
