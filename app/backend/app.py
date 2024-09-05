@@ -93,7 +93,6 @@ ENV = {
     "TARGET_TRANSLATION_LANGUAGE": "en",
     "ENRICHMENT_ENDPOINT": None,
     "ENRICHMENT_KEY": None,
-    "AZURE_AI_TRANSLATION_DOMAIN": "api.cognitive.microsofttranslator.com",
     "BING_SEARCH_ENDPOINT": "https://api.bing.microsoft.com/",
     "BING_SEARCH_KEY": "",
     "ENABLE_BING_SAFE_SEARCH": "true",
@@ -208,7 +207,6 @@ chat_approaches = {
                                     ENV["TARGET_TRANSLATION_LANGUAGE"],
                                     ENV["ENRICHMENT_ENDPOINT"],
                                     ENV["ENRICHMENT_KEY"],
-                                    ENV["AZURE_AI_TRANSLATION_DOMAIN"],
                                     str_to_bool.get(ENV["USE_SEMANTIC_RERANKER"])
                                 ),
     Approaches.ChatWebRetrieveRead: ChatWebRetrieveRead(
@@ -246,7 +244,6 @@ chat_approaches = {
                                     ENV["TARGET_TRANSLATION_LANGUAGE"],
                                     ENV["ENRICHMENT_ENDPOINT"],
                                     ENV["ENRICHMENT_KEY"],
-                                    ENV["AZURE_AI_TRANSLATION_DOMAIN"],
                                     str_to_bool.get(ENV["USE_SEMANTIC_RERANKER"])
                                 ),
     Approaches.GPTDirect: GPTDirectApproach(
@@ -759,19 +756,6 @@ async def refresh():
         log.exception("Exception in /refresh")
         raise HTTPException(status_code=500, detail=str(ex)) from ex
     return {"status": "success"}
-
-@app.get("/getSolve")
-async def getSolve(question: Optional[str] = None):
-   
-    if question is None:
-        raise HTTPException(status_code=400, detail="Question is required")
-
-    try:
-        results = process_agent_scratch_pad(question)
-    except Exception as ex:
-        log.exception("Exception in /getSolve")
-        raise HTTPException(status_code=500, detail=str(ex)) from ex
-    return results
 
 
 @app.get("/stream")
